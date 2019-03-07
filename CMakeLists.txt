@@ -1,6 +1,6 @@
 # CMake entry point
 cmake_minimum_required (VERSION 2.6)
-project (MyFramework)
+project (PotatoEngine)
 
 find_package(OpenGL REQUIRED)
 
@@ -65,6 +65,8 @@ add_library(common
 	common/renderer.cpp
 	common/sprite.h
 	common/sprite.cpp
+	common/entity.h
+	common/entity.cpp
 )
 
 # Demo
