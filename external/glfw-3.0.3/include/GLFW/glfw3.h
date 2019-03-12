@@ -1239,7 +1239,7 @@ GLFWAPI void glfwWindowHint(int target, int hint);
  *  @remarks **Mac OS X:** The GLFW window has no icon, as it is not a document
  *  window, but the dock icon will be the same as the application bundle's icon.
  *  Also, the first time a window is opened the menu bar is populated with
- *  common commands like Hide, Quit and About.  The (minimal) about dialog uses
+ *  potatoEngine commands like Hide, Quit and About.  The (minimal) about dialog uses
  *  information from the application's bundle.  For more information on bundles,
  *  see the Bundle Programming Guide provided by Apple.
  *

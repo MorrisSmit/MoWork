@@ -31,7 +31,7 @@ endif(UNIX)
 
 if(WIN32)
 	# Create a group for Visual Studio
-	SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
+	SOURCE_GROUP(potatoEngine REGULAR_EXPRESSION ".*/potatoEngine/.*" )
 	# suppress pedantic warnings
 	add_definitions( "/W1 /D_CRT_SECURE_NO_WARNINGS /wd4514 /nologo" )
 endif(WIN32)
@@ -57,16 +57,18 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 
-# Common (libcommon.a)
-add_library(common
-	common/camera.h
-	common/camera.cpp
-	common/renderer.h
-	common/renderer.cpp
-	common/sprite.h
-	common/sprite.cpp
-	common/entity.h
-	common/entity.cpp
+# potatoEngine (libpotatoEngine.a)
+add_library(potatoEngine
+	potatoEngine/camera.h
+	potatoEngine/camera.cpp
+	potatoEngine/renderer.h
+	potatoEngine/renderer.cpp
+	potatoEngine/sprite.h
+	potatoEngine/sprite.cpp
+	potatoEngine/entity.h
+	potatoEngine/entity.cpp
+	potatoEngine/scene.h
+	potatoEngine/scene.cpp
 )
 
 # Demo
@@ -74,7 +76,7 @@ add_executable(demo
 	demo/demo.cpp
 )
 target_link_libraries(demo
-	common
+	potatoEngine
 	${ALL_GRAPHICS_LIBS}
 )
 # Copy assets and shaders to the build directory
@@ -84,6 +86,6 @@ file(
 	DESTINATION ${CMAKE_BINARY_DIR}
 )
 file(
-	COPY common/shaders
+	COPY potatoEngine/shaders
 	DESTINATION ${CMAKE_BINARY_DIR}
 )

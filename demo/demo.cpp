@@ -4,9 +4,9 @@
 // Include GLFW
 #include <glfw3.h>
 
-#include <common/renderer.h>
-#include <common/camera.h>
-#include <common/sprite.h>
+#include <potatoEngine/renderer.h>
+#include <potatoEngine/camera.h>
+#include <potatoEngine/sprite.h>
 
 int main( void )
 {
