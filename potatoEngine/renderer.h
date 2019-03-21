@@ -21,7 +21,7 @@ class Renderer
 
 		void renderEntity(Entity* ent);
 
-		void renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot);
+		//void renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot);
 		GLFWwindow* window() { return _window; };
 
 		unsigned int width() { return _window_width; };
@@ -29,6 +29,8 @@ class Renderer
 
 	private:
 		int init();
+
+		glm::mat4 _viewMatrix;
 
 		GLFWwindow* _window;
 		unsigned int _window_width;

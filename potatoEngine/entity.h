@@ -1,31 +1,53 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include<potatoEngine/sprite.h>
-#include<vector>#include <glm/glm.hpp>
+
+#include<vector>
+
+#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
+
+#include<potatoEngine/sprite.h>
+#include<potatoEngine/scene.h>
 
 
 class Entity
 {
-	private:
-		Sprite* _sprite;
+		public:
+
+		Entity();
+		~Entity();
 
 		float xpos;
 		float ypos;
 		float xscale;
 		float yscale;
 		float rotation;
+
+		std::vector <Entity*> children;
+
+		Entity* parent;
+
+		void addChild(Entity* ent);
+
+		int childrenLenght() { return children.size(); };
+		
+		Sprite* getSprite() { return _sprite; };
+
+
+		void addSprite(std::string filepath);
+
+		private:
+
+		Sprite* _sprite;
+
+		
 		
 		
 
-	public:
-		Entity();
-		~Entity();
-		Sprite* getSprite();
-		void addSprite(std::string filepath);
-}
+
+};
 
 
 

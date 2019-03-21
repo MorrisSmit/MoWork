@@ -7,21 +7,22 @@
 #include <vector>
 
 
-class Scene
+class Scene : public Entity
 {
-private:
-	Camera _camera;
-	std::vector <Entity*> _entities;
 
 public:
 	Scene();
 	~Scene();
 
-	void addEntity(Entity* ent);
 
-	Camera getCamera() {return _camera}
-	int entitiesLength() {return _entities.size()}
-}
+	Camera* getCamera() { return _camera; };
+
+private:
+	Camera* _camera;
+	
+
+
+};
 
 
 

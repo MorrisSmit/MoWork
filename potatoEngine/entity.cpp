@@ -16,13 +16,14 @@ Entity::~Entity()
 
 }
 
+void Entity::addChild(Entity* ent)
+{
+	children.push_back(ent);
+	ent->parent = this;
+}
+
 void Entity::addSprite(std::string filepath)
 {
 	_sprite = nullptr;
 	_sprite = new Sprite(filepath);
-}
-
-Sprite* Entity::getSprite()
-{
-	return _sprite;
 }

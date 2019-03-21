@@ -16,7 +16,7 @@ public:
 
 	void computeMatricesFromInputs(GLFWwindow* window);
 	glm::mat4 getViewMatrix() { return _viewMatrix; };
-	glm::vec3 getCursor() {return cursor; }
+	glm::vec3 getCursor() { return cursor; };
 
 private:
 	glm::vec3 position;

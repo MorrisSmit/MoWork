@@ -76,30 +76,27 @@ int Renderer::init()
 
 void Renderer::renderScene(Scene* scene) 
 {
-	for (int i = scene->entitiesLength; i > 0; i--) 
+	_viewMatrix = scene->getCamera()->getViewMatrix();
+	for (int i = scene->childrenLenght(); i > 0; i--)
 	{
-
+		renderEntity(scene->children[i]);
 	}
 }
 
-void Renderer::renderEntity(Entity* ent) 
-{
-	renderSprite(ent->getSprite(), ent->xpos, ent->ypos, ent->scalex, ent->scaley, ent->rotation);
-}
 
-void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot)
+void Renderer::renderEntity(Entity* ent)
 {
-	glm::mat4 viewMatrix  = getViewMatrix(); // get from Camera (Camera position and direction)
+	//glm::mat4 viewMatrix  = ent->parent->getCamera().getViewMatrix; // get from Camera (Camera position and direction)
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// Build the Model matrix
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(px, py, 0.0f));
-	glm::mat4 rotationMatrix	= glm::eulerAngleYXZ(0.0f, 0.0f, rot);
-	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), glm::vec3(sx, sy, 1.0f));
+	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(ent->xpos, ent->ypos, 0.0f));
+	glm::mat4 rotationMatrix	= glm::eulerAngleYXZ(0.0f, 0.0f, ent->rotation);
+	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), glm::vec3(ent->xpos, ent->yscale, 1.0f));
 
 	modelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
 
-	glm::mat4 MVP = _projectionMatrix * viewMatrix * modelMatrix;
+	glm::mat4 MVP = _projectionMatrix * _viewMatrix * modelMatrix;
 
 	// Send our transformation to the currently bound shader,
 	// in the "MVP" uniform
@@ -108,7 +105,7 @@ void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float 
 
 	// Bind our texture in Texture Unit 0
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, sprite->texture());
+	glBindTexture(GL_TEXTURE_2D, ent->getSprite()->texture());
 	// Set our "myTextureSampler" sampler to user Texture Unit 0
 	GLuint textureID  = glGetUniformLocation(_programID, "myTextureSampler");
 	glUniform1i(textureID, 0);
@@ -116,7 +113,7 @@ void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float 
 	// 1st attribute buffer : vertices
 	GLuint vertexPosition_modelspaceID = glGetAttribLocation(_programID, "vertexPosition_modelspace");
 	glEnableVertexAttribArray(vertexPosition_modelspaceID);
-	glBindBuffer(GL_ARRAY_BUFFER, sprite->vertexbuffer());
+	glBindBuffer(GL_ARRAY_BUFFER, ent->getSprite()->vertexbuffer());
 	glVertexAttribPointer(
 		vertexPosition_modelspaceID,  // The attribute we want to configure
 		3,							// size : x+y+z => 3
@@ -129,7 +126,7 @@ void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float 
 	// 2nd attribute buffer : UVs
 	GLuint vertexUVID = glGetAttribLocation(_programID, "vertexUV");
 	glEnableVertexAttribArray(vertexUVID);
-	glBindBuffer(GL_ARRAY_BUFFER, sprite->uvbuffer());
+	glBindBuffer(GL_ARRAY_BUFFER, ent->getSprite()->uvbuffer());
 	glVertexAttribPointer(
 		vertexUVID,				   // The attribute we want to configure
 		2,							// size : U+V => 2
