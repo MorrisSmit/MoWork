@@ -16,6 +16,8 @@ int main( void )
 	Sprite* kingkong = new Sprite("assets/kingkong.tga");
 	Sprite* rgba = new Sprite("assets/rgba.tga");
 
+	Camera* camera;
+
 	float rot_z = 0.0f;
 
 	do {
@@ -23,7 +25,7 @@ int main( void )
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Compute the ViewMatrix from keyboard and mouse input (see: camera.h/cpp)
-		computeMatricesFromInputs(renderer.window());
+		camera->computeMatricesFromInputs(renderer.window());
 
 		//glm::vec3 cursor = getCursor(); // from Camera
 		//printf("(%f,%f)\n",cursor.x, cursor.y);
