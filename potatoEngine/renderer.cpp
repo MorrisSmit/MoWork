@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iostream>
 
 #include <potatoEngine/camera.h>
 #include <potatoEngine/renderer.h>
@@ -74,10 +75,11 @@ int Renderer::init()
 	return 0;
 }
 
-void Renderer::renderScene(Scene* scene) 
+void Renderer::renderScene	(Scene* scene) 
 {
+	scene->getCamera()->computeMatricesFromInputs(scene->renderer.window());
 	_viewMatrix = scene->getCamera()->getViewMatrix();
-	for (int i = scene->childrenLenght(); i > 0; i--)
+	for (int i = scene->childrenLenght() -1; i >= 0; i--)
 	{
 		renderEntity(scene->children[i]);
 	}
@@ -86,13 +88,13 @@ void Renderer::renderScene(Scene* scene)
 
 void Renderer::renderEntity(Entity* ent)
 {
-	//glm::mat4 viewMatrix  = ent->parent->getCamera().getViewMatrix; // get from Camera (Camera position and direction)
+	//glm::mat4 viewMatrix  = ent->parent->getCamera()->getViewMatrix; // get from Camera (Camera position and direction)
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// Build the Model matrix
 	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(ent->xpos, ent->ypos, 0.0f));
 	glm::mat4 rotationMatrix	= glm::eulerAngleYXZ(0.0f, 0.0f, ent->rotation);
-	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), glm::vec3(ent->xpos, ent->yscale, 1.0f));
+	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), glm::vec3(ent->xscale, ent->yscale, 1.0f));
 
 	modelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
 

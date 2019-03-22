@@ -9,12 +9,11 @@
 #include <glm/gtx/euler_angles.hpp>
 
 #include<potatoEngine/sprite.h>
-#include<potatoEngine/scene.h>
 
 
 class Entity
 {
-		public:
+	public:
 
 		Entity();
 		~Entity();
@@ -38,15 +37,11 @@ class Entity
 
 		void addSprite(std::string filepath);
 
-		private:
+	private:
 
 		Sprite* _sprite;
 
-		
-		
-		
-
-
+	
 };
 
 

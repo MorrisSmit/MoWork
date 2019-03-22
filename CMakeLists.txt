@@ -69,6 +69,8 @@ add_library(potatoEngine
 	potatoEngine/entity.cpp
 	potatoEngine/scene.h
 	potatoEngine/scene.cpp
+	potatoEngine/input.h
+	potatoEngine/input.cpp
 )
 
 # Demo

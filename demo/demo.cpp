@@ -7,6 +7,7 @@
 #include <potatoEngine/renderer.h>
 #include <potatoEngine/camera.h>
 #include <potatoEngine/sprite.h>
+#include <potatoEngine/entity.h>
 
 int main( void )
 {
@@ -20,6 +21,13 @@ int main( void )
 	Entity* kingkong = new Entity();
 	kingkong->addSprite("assets/kingkong.tga");
 
+	kingkong->xpos = 960;
+	kingkong->ypos = 540;
+	kingkong->xscale = 1;
+	kingkong->yscale = 1;
+	kingkong->rotation = 0;
+
+
 	scene->addChild(kingkong);
 
 
@@ -31,15 +39,15 @@ int main( void )
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Compute the ViewMatrix from keyboard and mouse input (see: camera.h/cpp)
-		//scene.getCamera()->computeMatricesFromInputs(renderer.window());
-		scene->getCamera()->computeMatricesFromInputs(renderer.window());
 
 		//glm::vec3 cursor = getCursor(); // from Camera
 		//printf("(%f,%f)\n",cursor.x, cursor.y);
 
-		// Render the scene (Sprite*, xpos, ypos, xscale, yscale, rotation)
+		// Render the sprite (Sprite*, xpos, ypos, xscale, yscale, rotation)
+		//renderer.renderScene(scene);
+
 		renderer.renderScene(scene);
-		rot_z += 0.03f;
+		kingkong->rotation += 0.03f;
 
 		// Swap buffers
 		glfwSwapBuffers(renderer.window());
