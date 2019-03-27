@@ -6,8 +6,8 @@ Entity::Entity()
 	_sprite = nullptr;
 	xpos = 0;
 	ypos = 0;
-	xscale = 0;
-	yscale = 0;
+	xscale = 1;
+	yscale = 1;
 	rotation = 0;
 }
 

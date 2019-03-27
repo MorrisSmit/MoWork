@@ -8,9 +8,11 @@
 #include <potatoEngine/camera.h>
 #include <potatoEngine/sprite.h>
 #include <potatoEngine/entity.h>
+#include <potatoEngine/core.h>
 
 int main( void )
 {
+	
 	Renderer renderer(1280, 720);
 
 	//Sprite* pencils = new Sprite("assets/pencils.tga");

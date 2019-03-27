@@ -14,12 +14,13 @@ public:
 	Scene();
 	~Scene();
 
+	bool isRunning;
+
 
 	Camera* getCamera() { return _camera; };
 
 private:
 	Camera* _camera;
-	
 
 
 };

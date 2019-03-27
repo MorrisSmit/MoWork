@@ -71,6 +71,9 @@ add_library(potatoEngine
 	potatoEngine/scene.cpp
 	potatoEngine/input.h
 	potatoEngine/input.cpp
+	potatoEngine/core.h
+	potatoEngine/core.cpp
+
 )
 
 # Demo
