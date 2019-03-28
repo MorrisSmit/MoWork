@@ -17,6 +17,7 @@ class Entity
 
 		Entity();
 		~Entity();
+		virtual void update(float deltatime);
 
 		float xpos;
 		float ypos;
@@ -29,8 +30,6 @@ class Entity
 		Entity* parent;
 
 		void addChild(Entity* ent);
-
-		int childrenLenght() { return children.size(); };
 		
 		Sprite* getSprite() { return _sprite; };
 

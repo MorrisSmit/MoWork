@@ -75,11 +75,11 @@ int Renderer::init()
 	return 0;
 }
 
-void Renderer::renderScene	(Scene* scene) 
+void Renderer::renderScene(Scene* scene) 
 {
-	scene->getCamera()->computeMatricesFromInputs(scene->renderer.window());
+	scene->getCamera()->computeMatricesFromInputs(_window);
 	_viewMatrix = scene->getCamera()->getViewMatrix();
-	for (int i = scene->childrenLenght() -1; i >= 0; i--)
+	for (int i = scene->children.size() -1; i >= 0; i--)
 	{
 		renderEntity(scene->children[i]);
 	}
@@ -88,7 +88,6 @@ void Renderer::renderScene	(Scene* scene)
 
 void Renderer::renderEntity(Entity* ent)
 {
-	//glm::mat4 viewMatrix  = ent->parent->getCamera()->getViewMatrix; // get from Camera (Camera position and direction)
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// Build the Model matrix

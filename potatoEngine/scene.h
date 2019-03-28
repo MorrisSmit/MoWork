@@ -17,6 +17,7 @@ public:
 	bool isRunning;
 
 
+
 	Camera* getCamera() { return _camera; };
 
 private:

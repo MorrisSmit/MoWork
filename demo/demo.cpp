@@ -13,12 +13,8 @@
 int main( void )
 {
 	
-	Renderer renderer(1280, 720);
-
-	//Sprite* pencils = new Sprite("assets/pencils.tga");
-	//Sprite* kingkong = new Sprite("assets/kingkong.tga");
-	//Sprite* rgba = new Sprite("assets/rgba.tga");
-
+	Core core;
+	
 	Scene* scene = new Scene();
 	Entity* kingkong = new Entity();
 	kingkong->addSprite("assets/kingkong.tga");
@@ -34,30 +30,29 @@ int main( void )
 
 
 
+
 	float rot_z = 0.0f;
 
 	do {
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// Compute the ViewMatrix from keyboard and mouse input (see: camera.h/cpp)
-
 		//glm::vec3 cursor = getCursor(); // from Camera
 		//printf("(%f,%f)\n",cursor.x, cursor.y);
 
-		// Render the sprite (Sprite*, xpos, ypos, xscale, yscale, rotation)
-		//renderer.renderScene(scene);
+		// Render the scene 
+		core.renderer.renderScene(scene);
 
-		renderer.renderScene(scene);
+		// Rotate our big boi
 		kingkong->rotation += 0.03f;
 
 		// Swap buffers
-		glfwSwapBuffers(renderer.window());
+		glfwSwapBuffers(core.renderer.window());
 		glfwPollEvents();
 
 	} // Check if the ESC key was pressed or the window was closed
-	while( glfwGetKey(renderer.window(), GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-		   glfwWindowShouldClose(renderer.window()) == 0 );
+	while( glfwGetKey(core.renderer.window(), GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
+		   glfwWindowShouldClose(core.renderer.window()) == 0 );
 
 	delete kingkong;
 

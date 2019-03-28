@@ -16,6 +16,12 @@ Entity::~Entity()
 
 }
 
+void Entity::update(float deltatime)
+{
+
+}
+
+
 void Entity::addChild(Entity* ent)
 {
 	children.push_back(ent);

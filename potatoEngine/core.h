@@ -1,6 +1,8 @@
 #ifndef CORE_H
 #define CORE_H
 
+#include <gl/glew.h>
+#include <glfw3.h>
 #include<potatoEngine/scene.h>
 #include<potatoEngine/renderer.h>
 #include<potatoEngine/entity.h>
@@ -15,10 +17,17 @@ public:
 
    ~Core();
 
+   Renderer renderer;
+
+   void renderScene(Scene* scene);
+
+   float deltaTime() { return _deltaTime;  };
+
 private:
-	Scene * scene;
-	Renderer _renderer;
-	
+	float _deltaTime;
+
+	float calculateDeltaTime();
+		
 };
 
 #endif // !CORE_H
