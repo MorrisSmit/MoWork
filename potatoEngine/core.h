@@ -19,6 +19,7 @@ public:
 
    Renderer renderer;
 
+
    void renderScene(Scene* scene);
 
    float deltaTime() { return _deltaTime;  };

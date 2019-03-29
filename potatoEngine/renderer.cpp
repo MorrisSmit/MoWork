@@ -75,15 +75,6 @@ int Renderer::init()
 	return 0;
 }
 
-void Renderer::renderScene(Scene* scene) 
-{
-	scene->getCamera()->computeMatricesFromInputs(_window);
-	_viewMatrix = scene->getCamera()->getViewMatrix();
-	for (int i = scene->children.size() -1; i >= 0; i--)
-	{
-		renderEntity(scene->children[i]);
-	}
-}
 
 
 void Renderer::renderEntity(Entity* ent)

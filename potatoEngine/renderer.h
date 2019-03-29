@@ -17,7 +17,7 @@ class Renderer
 		Renderer(unsigned int w = 1280, unsigned int h = 720);
 		virtual ~Renderer();
 
-		void renderScene(Scene* scene);
+		void setViewMatrix(glm::mat4 vm) { _viewMatrix = vm; };
 
 		void renderEntity(Entity* ent);
 

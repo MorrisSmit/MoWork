@@ -24,7 +24,8 @@ int main( void )
 	kingkong->xscale = 1;
 	kingkong->yscale = 1;
 	kingkong->rotation = 0;
-
+	
+	scene->isRunning = true;
 
 	scene->addChild(kingkong);
 
@@ -34,14 +35,13 @@ int main( void )
 	float rot_z = 0.0f;
 
 	do {
-		// Clear the screen
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
 		//glm::vec3 cursor = getCursor(); // from Camera
 		//printf("(%f,%f)\n",cursor.x, cursor.y);
 
-		// Render the scene 
-		core.renderer.renderScene(scene);
+		// Run the scene 
+		core.renderScene(scene);
 
 		// Rotate our big boi
 		kingkong->rotation += 0.03f;
