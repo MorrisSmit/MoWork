@@ -19,13 +19,10 @@ class Entity
 		~Entity();
 		virtual void update(float deltatime);
 
-		float xpos;
-		float ypos;
-		float xscale;
-		float yscale;
-		float rotation;
-
-		std::vector <Entity*> children;
+		glm::vec3 pos;
+		glm::vec3 rot;
+		glm::vec2 scale;
+		
 
 		Entity* parent;
 
@@ -39,6 +36,7 @@ class Entity
 	private:
 
 		Sprite* _sprite;
+		std::vector <Entity*> _children;
 
 	
 };

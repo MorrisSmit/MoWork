@@ -23,23 +23,19 @@ float Core::calculateDeltaTime()
 
 void Core::renderScene(Scene* scene)
 {
-	
 
-	if (scene->isRunning)
+	// Clear the screen
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Get the viewmatrix from the camera
+	scene->getCamera()->computeMatricesFromInputs(renderer.window());
+	glm::mat4 _viewMatrix = scene->getCamera()->getViewMatrix();
+	renderer.setViewMatrix(_viewMatrix);
+
+	// Tell the renderer to render all the entities in the scene
+	for (int i = 0; i < scene->children.size(); i++)
 	{
-		// Clear the screen
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		// Get the viewmatrix from the camera
-		scene->getCamera()->computeMatricesFromInputs(renderer.window());
-		glm::mat4 _viewMatrix = scene->getCamera()->getViewMatrix();
-		renderer.setViewMatrix(_viewMatrix);
-
-		// Tell the renderer to render all the entities in the scene
-		for (int i = 0; i < scene->children.size(); i++)
-		{
-			renderer.renderEntity(scene->children[i]);
-		}
+		renderer.renderEntity(scene->children[i]);
 	}
 }
 

@@ -4,11 +4,10 @@
 Entity::Entity()
 {
 	_sprite = nullptr;
-	xpos = 0;
-	ypos = 0;
-	xscale = 1;
-	yscale = 1;
-	rotation = 0;
+	pos = glm::vec3(0, 0, 0);
+	rot = glm::vec3(0, 0, 0);
+	scale = glm::vec2(0, 0);
+
 }
 
 Entity::~Entity()
@@ -24,7 +23,7 @@ void Entity::update(float deltatime)
 
 void Entity::addChild(Entity* ent)
 {
-	children.push_back(ent);
+	_children.push_back(ent);
 	ent->parent = this;
 }
 

@@ -7,6 +7,7 @@
 #include<potatoEngine/renderer.h>
 #include<potatoEngine/entity.h>
 #include<potatoEngine/camera.h>
+#include<potatoEngine/input.h>
 #include<iostream>
 
 class Core
@@ -18,6 +19,8 @@ public:
    ~Core();
 
    Renderer renderer;
+
+   Input input;
 
 
    void renderScene(Scene* scene);

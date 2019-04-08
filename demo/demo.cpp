@@ -43,7 +43,7 @@ int main( void )
 		// Run the scene 
 		core.renderScene(scene);
 
-		// Rotate our big boi
+		// Rotate kingkong
 		kingkong->rotation += 0.03f;
 
 		// Swap buffers
